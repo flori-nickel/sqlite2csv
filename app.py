@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, send_file, request, render_template, jsonify
 import sqlite3, pandas as pd, datetime, os, tempfile
 
 app = Flask(__name__)
@@ -33,7 +33,12 @@ def export():
         df.to_csv(output_path, index=False, encoding="utf-8")
         conn.close()
 
-        return jsonify({"status": "success", "message": f"Export erfolgreich: {output_path}"})
+        return send_file(
+            output_path,
+            as_attachment=True,
+            download_name="LoggedAlarm_export.csv",
+            mimetype="text/csv"
+        )
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
