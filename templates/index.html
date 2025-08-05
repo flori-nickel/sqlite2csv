@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SQLite Export Tool</title>
+  <title>IST sqlite2csv</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -78,16 +78,16 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Firmenlogo" />
-    <h1>SQLite Export Tool</h1>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Firmenlogo" />
+    <h1>IST</h1>
   </header>
 
   <main>
-    <h2>IST</h2>
+    <h2>sqlite 2 csv Converter</h2>
     <form id="exportForm">
-      <label for="db_file">DB-Datei auswählen (.db3):</label>
+      <label for="db_file">Datei auswählen (.db3):</label>
       <input type="file" id="db_file" name="db_file" accept=".db3" required />
-      <button type="submit">Export starten</button>
+      <button type="submit">Konvertierung starten</button>
     </form>
     <p id="status"></p>
   </main>
@@ -105,7 +105,7 @@
         document.getElementById("status").textContent = data.message;
       })
       .catch(() => {
-        document.getElementById("status").textContent = "Fehler beim Export.";
+        document.getElementById("status").textContent = "Fehler beim Konvertieren.";
       });
     });
   </script>
